@@ -18,6 +18,14 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    
+  end
+  
+  def destroy
+    
+  end
+  
   private
   
   def user_params
