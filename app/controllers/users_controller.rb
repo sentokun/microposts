@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :edit_user_params, only: [:edit, :update]
   
   def show
     @user = User.find(params[:id])
@@ -22,6 +23,14 @@ class UsersController < ApplicationController
     
   end
   
+  def update
+    if @user.update(user_params)
+      redirect_to root_path , notive: 'プロフィールを編集したで'
+    else
+      render 'edit'
+    end
+  end
+  
   def destroy
     
   end
@@ -29,6 +38,11 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
+  
+  def edit_user_params
+    @user = User.find(params[:id])
   end
 end
