@@ -3,8 +3,24 @@
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
-        
-<%= render 'shared/user_info' %>
+
+<!--ユーザー一覧ページを作ったので、_user_infoを使いまわせるように反抗したのですが-->
+<!--ここ_user_info.html.erbでcurrent_userを@userに置き換えるとエラーになったので直打ちです。-->
+<!--おそらく@userに変更したので、どの値にすれば良いのかわからずエラーになったと思うのですが、-->
+<!--回避方法、何かありましたら教えてください。-->
+<!--バーシャルを呼び出す時にパラメータを指定する方法とか？-->
+
+<%= link_to gravatar_for(current_user, size: 50), current_user %>
+
+<h1>
+<%= current_user.name %>
+</h1>
+<span>
+<%= link_to "view my profile", current_user %>
+</span>
+<span>
+<%= pluralize(current_user.microposts.count, "micropost") %>
+</span>
 
       </section>
       <section class="micropost_form">

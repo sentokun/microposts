@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
-  before_action :edit_user_params, only: [:edit, :update]
+  before_action :edit_user_params, only: [:edit, :update, :followings, :show, :followers]
+  
+  def index
+    @users = User.all
+  end
   
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @microposts = @user.microposts
   end
   
@@ -34,6 +38,16 @@ class UsersController < ApplicationController
   
   def destroy
     
+  end
+  
+  def followings
+    # @user = User.new
+    @following_users = @user.following_users
+  end
+  
+  def followers
+    # @user = User.new
+    @followers_users = @user.follower_users
   end
   
   private
