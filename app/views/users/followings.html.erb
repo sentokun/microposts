@@ -1,22 +1,25 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>フォローしとるやつらはこいつらや</h1>
-<% @following_users.each do |user| %>
+      <h1><%= @followmessage %></h1>
+      
+      <!--putsだとでない-->
+      <%= p 'こいつ友達おらんねん、仲良くしたってな' if @following_users.empty? %>
 
-<!--フォロー0の時にメッセージを出したい-->
-
-<div>
-<%= gravatar_for user %>
-    
-<%= user.name %>
-<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-<% end %>
+      <% @following_users.each do |user| %>
+      
+      
+      <div>
+      <%= gravatar_for user %>
+          
+      <%= user.name %>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+      <% end %>
 
     </section>
   </aside>

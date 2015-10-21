@@ -42,12 +42,16 @@ class UsersController < ApplicationController
   
   def followings
     # @user = User.new
+    @followmessage = "フォローしとるやつらはこいつらや"
     @following_users = @user.following_users
+    render 'followings'
   end
   
   def followers
+    @followmessage = "こいつらにフォローされとるで"
     # @user = User.new
-    @followers_users = @user.follower_users
+    @following_users = @user.follower_users
+    render 'followings'
   end
   
   private
