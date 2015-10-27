@@ -2,7 +2,12 @@
 
   <ol class="microposts">
     
+
 <%= render @feed_items %>
+
+<!-- 追加箇所開始 -->
+<%= paginate @feed_items, outer_window: 2 %>
+<!-- 追加箇所終了 -->
 
   </ol>
 <% end %>
