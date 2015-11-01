@@ -17,10 +17,11 @@
   </span>
   <% if current_user == micropost.user %>
   
-        
-  <%= link_to "delete", micropost, method: :delete,
-                                         data: { confirm: "You sure?" } %>
+  <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" } %>
   
-      
+  <% end %>
+  
+  <% if logged_in? %>
+    <%= link_to "retweet", retweet_microposts_path, method: :post %>
   <% end %>
 </li>

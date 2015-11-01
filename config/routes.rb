@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts
+  resources :microposts do
+    collection do
+      post :retweet
+    end
+  end
   resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
