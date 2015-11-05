@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :retweet]
+  before_action :logged_in_user, only: [:create]
   
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -21,9 +21,10 @@ class MicropostsController < ApplicationController
   end
   
   def retweet
-    @micropost = current_user.microposts.build(micropost_params)
+    retweet= params[:content]+"retweet"
+    @micropost = current_user.microposts.build(retweet: params[:retweet], content: retweet)
     if @micropost.save
-      flash[:success] = "Micropost created!!"
+      flash[:success] = "Retweet created!!"
       redirect_to root_url
     else
       @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
@@ -34,7 +35,11 @@ class MicropostsController < ApplicationController
   private
   
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content,:retweet)
   end
+  
+  # def retweet_params
+  #   params.require(:micropost).permit(:retweet)
+  # end
 end
 

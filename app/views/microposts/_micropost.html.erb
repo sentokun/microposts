@@ -1,7 +1,9 @@
 <li id="micropost-
 <%= micropost.id %>
 ">
-  
+<% if micropost.retweet.present? %>
+リツイートです。  
+<% end %>
 <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
 
   <span class="user">
@@ -22,6 +24,6 @@
   <% end %>
   
   <% if logged_in? %>
-    <%= link_to "retweet", retweet_microposts_path, method: :post %>
+    <%= link_to "retweet", retweet_microposts_path(content: micropost.content,retweet: micropost.id), method: :post %>
   <% end %>
 </li>
