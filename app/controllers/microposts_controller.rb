@@ -7,7 +7,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!!"
       redirect_to root_url
     else
-      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+      @user = current_user
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page])
       render 'static_pages/home'
     end
   end
@@ -21,7 +22,7 @@ class MicropostsController < ApplicationController
   end
   
   def retweet
-    retweet= params[:content]+"retweet"
+    retweet= params[:content]
     @micropost = current_user.microposts.build(retweet: params[:retweet], content: retweet)
     if @micropost.save
       flash[:success] = "Retweet created!!"

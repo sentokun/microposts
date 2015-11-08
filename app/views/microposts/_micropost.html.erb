@@ -2,7 +2,7 @@
 <%= micropost.id %>
 ">
 <% if micropost.retweet.present? %>
-リツイートです。  
+<div class="btn btn-success">リツイート</div>  
 <% end %>
 <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
 
